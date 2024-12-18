@@ -75,8 +75,8 @@ def render(viewpoint_camera, pc : Gaussian, pipe, bg_color : torch.Tensor, scali
         image_width=int(viewpoint_camera.image_width),
         tanfovx=tanfovx,
         tanfovy=tanfovy,
-        kernel_size=kernel_size,
-        subpixel_offset=subpixel_offset,
+        #kernel_size=kernel_size,
+        #subpixel_offset=subpixel_offset,
         bg=bg_color,
         scale_modifier=scaling_modifier,
         viewmatrix=viewpoint_camera.world_view_transform,
@@ -121,7 +121,7 @@ def render(viewpoint_camera, pc : Gaussian, pipe, bg_color : torch.Tensor, scali
         colors_precomp = override_color
 
     # Rasterize visible Gaussians to image, obtain their radii (on screen). 
-    rendered_image, radii = rasterizer(
+    rendered_image, radii, rendered_depth, rendered_alpha  = rasterizer(
         means3D = means3D,
         means2D = means2D,
         shs = shs,
